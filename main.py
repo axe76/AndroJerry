@@ -1,6 +1,7 @@
 import pymunk
 import pygame
 from joodle_dump import Ground, Player, Walls, Platform, Environment
+import os 
 
 pygame.init()
 screen = pygame.display.set_mode((1000,800))
@@ -27,6 +28,7 @@ def coll_post(arbiter,space,data):
 handler = space.add_default_collision_handler()
 handler.post_solve = coll_post
 
+bg = pygame.image.load(os.path.join("gallery", "space.jpg"))
 
 while not done:
     for event in pygame.event.get():
@@ -40,8 +42,8 @@ while not done:
             env.add_platform(1,x1,y1,x2,y2)
             env.isplatform = True
 
-
-    screen.fill((50,50,50))
+    screen.blit(bg, (0,0))
+    # screen.fill((50,50,50))
     env.step()
     space.step(1/50)
     pygame.display.update()

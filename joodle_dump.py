@@ -1,10 +1,11 @@
 import pymunk
 import pygame
 import numpy as np 
+import os
 
 class Environment():
     def __init__(self,space,screen):
-        self.player = Player(100,20,space,screen)
+        self.player = Player(100,30,space,screen)
         self.ground = Ground(1,space,screen)
         self.walls = Walls(1,space,screen)
         self.platforms = []
@@ -52,7 +53,7 @@ class Platform():
         space.add(self.segment_body,self.segment_shape)
 
     def draw_platform(self):
-        pygame.draw.line(self.screen, (0,0,200), (self.x1,self.y1),(self.x2,self.y2),2)
+        pygame.draw.line(self.screen, (0,200,0), (self.x1,self.y1),(self.x2,self.y2),5)
 
 class Player():
     def __init__(self,mass,radius,space,screen):
@@ -67,13 +68,15 @@ class Player():
         self.circle_shape.body.velocity = (100,0)
         self.circle_shape.elasticity = self.elasticity
         self.circle_shape.id = 2
+        self.img = pygame.transform.scale2x(pygame.image.load(os.path.join("gallery","player.png")))
 
         space.add(self.circle_body, self.circle_shape)
         
     def draw_player(self):
         pos_x = int(self.circle_body.position.x)
         pos_y = int(self.circle_body.position.y)
-        pygame.draw.circle(self.screen,(0,0,0),(pos_x,pos_y),30)
+        # pygame.draw.circle(self.screen,(0,0,0),(pos_x,pos_y),30)
+        self.screen.blit(self.img,(pos_x-60,pos_y-80))
 
 class Ground():
     def __init__(self,mass,space,screen):
@@ -111,5 +114,5 @@ class Walls():
         space.add(self.segment1_body,self.segment1_shape,self.segment2_body,self.segment2_shape)
 
     def draw_walls(self):
-        pygame.draw.rect(self.screen, (0,200,0), pygame.Rect(0, 0, 0, 800),2)
-        pygame.draw.rect(self.screen, (0,200,0), pygame.Rect(1000, 0, 0, 800),2)
+        pygame.draw.rect(self.screen, (0,0,0), pygame.Rect(0, 0, 0, 800),2)
+        pygame.draw.rect(self.screen, (0,0,0), pygame.Rect(1000, 0, 0, 800),2)
