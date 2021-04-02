@@ -6,9 +6,9 @@ import random
 import firebase_admin
 from firebase_admin import db
 
-cred_object = firebase_admin.credentials.Certificate('androjerry-36582-firebase-adminsdk-355ix-a3d830de02.json')
+cred_object = firebase_admin.credentials.Certificate('....json')
 default_app = firebase_admin.initialize_app(cred_object, {
-	"databaseURL":'https://androjerry-36582-default-rtdb.firebaseio.com/'
+	"databaseURL":'enter url'
 	})
 
 ref = db.reference("/")
