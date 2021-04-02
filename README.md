@@ -1,2 +1,2 @@
 # AndroJerry
-A venture into making game environments using smartphones on pymunk and pygame
+A venture into making interactive game environments that aim to utilize smartphone as a controller 
